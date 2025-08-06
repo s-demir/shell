@@ -1,0 +1,28 @@
+
+* << end with ctrl+d/c causes leaks
+* non-exist cmd causes leaks
+* set OLDPWD
+
+valgrind --leak-check=full --show-leak-kinds=all --suppressions=readline.supp --track-fds=yes ./minishell
+
+minishell$ ^C
+minishell$ echo $?
+1
+
+//düzeltildi
+minishell$ cat
+==2582693== Warning: invalid file descriptor -1 in syscall close()
+==2583192== Warning: invalid file descriptor -1 in syscall close()
+^C
+
+
+heredocları önceliklendireceğiz
+fork ve child parent processler düzenlenecek Leak oluşumu var
+
+sleep 10 ya da cat gibi kapanmayan komutlarda ctrl+\ kontrolü yapabilirsin
+
+./jsahdasd\n
+
+env -i ./minishell
+
+ls komutunda still reachable yiyoruz yyyyeeeeyyyyyyyyy
