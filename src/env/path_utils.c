@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:47:38 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:10:14 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 21:12:51 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*build_path_from_env(char *env_var, char *file, int *indx_s)
 {
-	char		*tmp_path;
-	int			a;
-	int			b;
-	int			file_size;
+	char	*tmp_path;
+	int		a;
+	int		b;
+	int		file_size;
 
 	advance_path_index(env_var, indx_s, &a);
 	file_size = string_length(file, ' ');
@@ -43,8 +43,8 @@ char	*build_path_from_env(char *env_var, char *file, int *indx_s)
 
 int	find_substr_index(char **haystack, char *needle, int n_length)
 {
-	int		a;
-	int		b;
+	int	a;
+	int	b;
 
 	a = 0;
 	while (haystack[a] != 0)
@@ -88,9 +88,9 @@ void	advance_path_index(char *env_var, int *indx_s, int *a)
 
 int	count_tokens(char *str, char del)
 {
-	int			a;
-	int			b;
-	int			res;
+	int	a;
+	int	b;
+	int	res;
 
 	a = 0;
 	b = 1;
