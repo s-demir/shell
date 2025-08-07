@@ -6,10 +6,9 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 15:24:47 by amsagman          #+#    #+#             */
-/*   Updated: 2025/08/06 18:12:50 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 21:02:22 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -18,7 +17,7 @@
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
-int     ft_isspace(int c);
+int		ft_isspace(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
