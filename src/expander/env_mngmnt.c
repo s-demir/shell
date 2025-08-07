@@ -31,15 +31,16 @@ char	**copy_env_exclude_index(char **env, int a, int a_2, int d)
 	}
 	if (d >= 0)
 		new_thing[c] = 0;
-	gfree_string_array(env);
+	//gfree_string_array(env);
 	return (new_thing);
 }
 
+
 char	***duplicate_env_structure(t_env *env, int a, int a_2, int d)
 {
-	int				b;
-	int				c;
-	char			***new_thing;
+	int		b;
+	int		c;
+	char	***new_thing;
 
 	b = 0;
 	c = 0;

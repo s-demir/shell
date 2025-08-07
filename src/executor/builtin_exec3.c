@@ -44,7 +44,7 @@ int run_basic_cmd(char **cmd, int *fd, char **env, int *piped)
         handle_basic_fds(piped, fd, pipe_fd);
         //while (*env)
         //{
-        //    gfree(*env);
+        //    // gfree(*env);
         //    env++;
         //}
         execve(cmd[0], cmd, env);

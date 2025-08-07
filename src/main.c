@@ -23,7 +23,6 @@ t_token	*parse_user_input(char *input, int *status)
 		return NULL;
 	}
 	cleaned_input = ft_strtrim(input, " \t\n\v\f\r");
-	//gfree(input);
 	if (!cleaned_input)
 	{
 		*status = 258;
@@ -31,12 +30,10 @@ t_token	*parse_user_input(char *input, int *status)
 	}
 	if (check_syntax(cleaned_input))
 	{
-		gfree(cleaned_input);
 		*status = 258;
 		return NULL;
 	}
 	tokens = tokenize_input(cleaned_input);
-	// gfree(cleaned_input);
 	if (!tokens)
 		*status = 258;
 	return tokens;
@@ -72,6 +69,7 @@ void	execute_shell_loop(t_env *env)
 		if (!input)
 		{
 			write(STDOUT_FILENO, "exit\n", 5);
+			free(input);
 			cleanup_shell(env, 0);
 		}
 		add_history(input);
@@ -98,6 +96,6 @@ int	main(int argc, char **argv, char **envp)
 		execute_shell_loop(env);
 		cleanup_shell(env, 0);
 	}
-	gfree(env);
+	// gfree(env);
 	return 0;
 }

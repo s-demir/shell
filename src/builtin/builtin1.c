@@ -24,13 +24,13 @@ void update_pwd_env(char *new_path, t_env *env, int unused)
     exp_args[1] = build_pwd_string(new_path);
     if (!exp_args[1])
 	{
-        gfree(exp_args[0]);
-        gfree(exp_args);
+        // gfree(exp_args[0]);
+        // gfree(exp_args);
         return;
 	}
     exp_args[2] = NULL;
     unset_or_export_cmd(exp_args, env, NULL, &tmp);
-    gfree_string_array(exp_args);
+    //gfree_string_array(exp_args);
 }
 
 int	change_current_directory(char *path, t_env *env)
@@ -60,7 +60,7 @@ char	*get_current_working_directory(int size, int tries, int fd)
 		return (NULL);
 	if (!getcwd(buffer, size))
 	{
-		gfree(buffer);
+		// gfree(buffer);
 		if (tries < 10)
 			return (get_current_working_directory(size + 50, tries + 1, fd));
 		else

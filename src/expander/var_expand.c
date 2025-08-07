@@ -27,7 +27,7 @@ char	*replace_variable_with_value(
 	duplicate_string(new__, old_var, 0, st);
 	duplicate_string(new__ + st, __new, 0, unsize);
 	duplicate_string(new__ + st + unsize, old_var, end, string_length(old_var, '\0'));
-	gfree(old_var);
+	// gfree(old_var);
 	return (new__);
 }
 
@@ -48,7 +48,7 @@ char	*expand_variable_in_string(char *var, t_env *env, int a, int *f_hole)
 		set_env_status(env, g_var_thing, "?=");
 	g_var_thing = 0;
 	c = locate_env_var_index(env, new_var);
-	gfree(new_var);
+	// gfree(new_var);
 	*f_hole = 0;
 	if (c >= 0)
 	{
@@ -111,7 +111,7 @@ char	**refactore_args_array(char **args, int *quick_norm_fix)
 		a++;
 	}
 	new_args[b] = 0;
-	gfree_string_array(args);
+	//gfree_string_array(args);
 	return (new_args);
 }
 

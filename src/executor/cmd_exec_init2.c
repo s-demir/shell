@@ -64,7 +64,7 @@ void verify_path(t_ast_node *head, char **env, int *status)
     else
 	{
         check_directory_status(path, head->args[0], status);
-        gfree(path);
+        // gfree(path);
 	}
     *status = report_command_error(head->args[0], *status);
 }

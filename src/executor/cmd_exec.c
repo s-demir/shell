@@ -38,7 +38,7 @@ int	run_redir_cmd(
 		exit(127);
 	}
 	parent_fds_managment(_piped, _fd, fd_);
-	gfree_string_array(_cmd_);
+	//gfree_string_array(_cmd_);
 	return (1);
 }
 
@@ -64,7 +64,7 @@ int prep_run_cmd(char **cmd, int *fd, int *piped, t_env *env)
         if (!piped[PIPE_REDIR_COMBO])
 		{
             status = run_basic_cmd(cmd_args, fd, env->original_env, piped);
-            gfree_string_array(cmd_args);
+            //gfree_string_array(cmd_args);
 		}
         else
             status = run_redir_cmd(cmd_args, fd, env->original_env, piped);

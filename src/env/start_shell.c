@@ -21,7 +21,7 @@ static void update_pwd(t_env *env, int idx)
         if (idx >= 0)
             remove_env_entry(env, idx);
         update_pwd_env(pwd, env, idx);
-        // gfree(pwd);
+        // // gfree(pwd);
 	}
 }
 

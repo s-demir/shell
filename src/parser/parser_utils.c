@@ -33,7 +33,7 @@ t_ast_node *build_command(t_token **tokens)
     setup_args(node, tokens);
     if (!node->args)
 	{
-        gfree(node);
+        // gfree(node);
         return NULL;
 	}
     return node;
@@ -49,5 +49,5 @@ void init_file(t_ast_node *node, t_token *token)
     node->type = token->type;
     node->left = NULL;
     node->right = NULL;
-    gfree(token);
+    //// gfree(token);
 }

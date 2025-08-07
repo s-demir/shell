@@ -26,7 +26,7 @@ void	update_environment_var(char *var, t_env *env)
 	o = locate_env_var_index(env, env_var);
 	if (o >= 0)
 		remove_env_entry(env, o);
-	// gfree(env_var);
+	// // gfree(env_var);
 	if (c > 0 && c < string_length(var, '\0') - 1)
 		add_env_entry(env, var, c, 1);
 	else if (var[c] == '=')
@@ -54,7 +54,7 @@ void	set_env_status(t_env *env, int status, char *start)
 		status /= 10;
 	}
 	update_environment_var(var, env);
-	// gfree(var);
+	// // gfree(var);
 }
 
 int	is_space(char *line)

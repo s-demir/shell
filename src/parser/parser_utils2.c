@@ -38,11 +38,11 @@ static void clear_args(char **args, int idx)
     (void)args;
     // if (!args || !args[idx])
     //     return ;
-    // gfree(args[idx]);
+    // // gfree(args[idx]);
     // clear_args(args, idx + 1);
     // if (idx == 0)
     // {
-    //     gfree(args);
+    //     // gfree(args);
     // }
 }
 
@@ -58,5 +58,5 @@ void clear_ast(t_ast_node *node)
     }
     clear_ast(node->left);
     clear_ast(node->right);
-    // gfree(node);
+    // // gfree(node);
 }

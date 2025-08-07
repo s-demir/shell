@@ -66,7 +66,7 @@ int setup_env(t_env *env, char **orig_env, int count)
     env->parsed_env = galloc((count + 1) * sizeof(char **));
     if (!env->parsed_env)
 	{
-        gfree(env->original_env);
+        // gfree(env->original_env);
         return 0;
 	}
     idx = 0;

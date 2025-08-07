@@ -44,7 +44,7 @@ void	append_env_var(char *var, t_env *env)
 	env_var = galloc(c + 1);
 	duplicate_string(env_var, var, 0, c);
 	o = locate_env_var_index(env, env_var);
-	gfree(env_var);
+	// gfree(env_var);
 	if (o >= 0)
 	{
 		b = string_length(env->original_env[o], '\0');
@@ -57,7 +57,7 @@ void	append_env_var(char *var, t_env *env)
 	else
 		env_var = str_without_char(var, '+');
 	update_environment_var(env_var, env);
-	gfree(env_var);
+	// gfree(env_var);
 }
 
 int	locate_env_var_index(t_env *env, char *name)

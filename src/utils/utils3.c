@@ -20,10 +20,10 @@ void	gfree_string_array(char **arr)
 	// a = 0;
 	// while (arr[a] != 0)
 	// {
-	// 	gfree(arr[a]);
+	// 	// gfree(arr[a]);
 	// 	a += 1;
 	// }
-	// gfree(arr);
+	// // gfree(arr);
 }
 
 int	strtoint(char *str)

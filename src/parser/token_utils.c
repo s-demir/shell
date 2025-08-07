@@ -23,7 +23,7 @@ t_token	*create_token(t_token_type type, char *value)
     token->value = ft_strdup(value);
     if (!token->value)
 	{
-        gfree(token);
+        // gfree(token);
         return (NULL);
     }
     token->next = NULL;
@@ -56,8 +56,8 @@ void clear_tokens(t_token *tokens)
     while (current)
     {
         next = current->next;
-        gfree(current->value);
-        gfree(current);
+        // gfree(current->value);
+        // gfree(current);
         current = next;
     }
 }
@@ -88,7 +88,7 @@ void	add_word_token_if_valid(char **start, char **input, t_token **tokens)
 				append_token(tokens, new_token);
 			else
 				ft_putstr_fd("Error: Token creation failed.\n", 2);
-			// gfree(word);
+			// // gfree(word);
 		}
 		else
 			ft_putstr_fd("Error: galloc failed in handle_word.\n", 2);

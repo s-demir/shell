@@ -12,29 +12,30 @@
 
 #include "minishell.h"
 
-char *build_pwd_string(char *new_path)
+char	*build_pwd_string(char *new_path)
 {
-    char *pwd_str;
-    int len;
-    int idx;
-    len = string_length(new_path, '\0') + 5;
-    pwd_str = galloc(len * sizeof(char));
-    if (!pwd_str)
-        return NULL;
-    duplicate_string(pwd_str, "PWD=", 0, 4);
-    idx = 0;
-    while (new_path[idx])
+	char	*pwd_str;
+	int		len;
+	int		idx;
+
+	len = string_length(new_path, '\0') + 5;
+	pwd_str = galloc(len * sizeof(char));
+	if (!pwd_str)
+		return (NULL);
+	duplicate_string(pwd_str, "PWD=", 0, 4);
+	idx = 0;
+	while (new_path[idx])
 	{
-        pwd_str[4 + idx] = new_path[idx];
-        idx++;
+		pwd_str[4 + idx] = new_path[idx];
+		idx++;
 	}
-    pwd_str[4 + idx] = '\0';
-    return pwd_str;
+	pwd_str[4 + idx] = '\0';
+	return (pwd_str);
 }
 
 void	__exit(char **_cmd_)
 {
-	int				status;
+	int	status;
 
 	status = 0;
 	if (_cmd_[1] && _cmd_[2])
@@ -43,13 +44,14 @@ void	__exit(char **_cmd_)
 		status = 255;
 	else if (_cmd_[1])
 		status = strtoint(_cmd_[1]);
-	gfree_string_array(_cmd_);
+	//gfree_string_array(_cmd_);
+	clear_garbage();
 	exit(status);
 }
 
 int	is_export_with_args(char **cmd)
 {
-	int						a;
+	int	a;
 
 	a = 1;
 	while (cmd[0] && cmd[a])
@@ -63,8 +65,8 @@ int	is_export_with_args(char **cmd)
 
 int	export_statment_check(char *_cmd_)
 {
-	int							a;
-	int							b;
+	int	a;
+	int	b;
 
 	a = string_length(_cmd_, '=');
 	if (a > 1 && _cmd_[a - 1] == '+')

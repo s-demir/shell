@@ -24,7 +24,7 @@ static char	*check_path_without_env(char *file, int mode)
 	duplicate_string(tmp_path, file, 0, b);
 	if (check_path_access(tmp_path, mode))
 		return (tmp_path);
-	gfree(tmp_path);
+	// gfree(tmp_path);
 	return (NULL);
 }
 
@@ -36,7 +36,7 @@ char *check_env_path(char *env_path, char *file, int *indices, int mode)
         return NULL;
     if (check_path_access(path, mode))
         return path;
-    // gfree(path);
+    // // gfree(path);
     return NULL;
 }
 
@@ -108,7 +108,7 @@ char	**prepare_cmd_arguments(char *cmd, char **envp, int c)
 			cmd_arr[c] = find_cmd_path(cmd_holder, envp, "PATH", X_OK);
 			if (!cmd_arr[c])
 				cmd_arr[c] = ft_strdup(cmd_holder);
-			// gfree(cmd_holder);
+			// // gfree(cmd_holder);
 		}
 		else
 			cmd_arr[c] = cmd_holder;

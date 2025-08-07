@@ -21,7 +21,7 @@ t_ast_node *make_file(t_token *token)
     init_file(node, token);
     if (!node->args)
 	{
-        gfree(node);
+        // gfree(node);
         return NULL;
 	}
     return node;
@@ -42,8 +42,8 @@ t_ast_node *handle_redir_loop(t_token **tokens, t_token *tmp)
             (*tokens)->next = next->next->next;
             node->left = parse_redirection(&tmp);
             node->right = make_file(next->next);
-            gfree(next->value);
-            gfree(next);
+            // gfree(next->value);
+            // gfree(next);
             return node;
 	}
         *tokens = next;
@@ -78,8 +78,8 @@ t_ast_node	*par_pipe(t_token **tokens)
 			(*tokens)->next = NULL;
 			pipe_node->left = parse_redirection(&tmp);
 			pipe_node->right = par_pipe(&(next_token->next));
-			gfree(next_token->value);
-			gfree(next_token);
+			// gfree(next_token->value);
+			// gfree(next_token);
 			return (pipe_node);
 		}
 		*tokens = next_token;

@@ -44,12 +44,12 @@ void	gfree_env_var(char ***array)
 	// a = 0;
 	// while (array[a])
 	// {
-	// 	gfree(array[a][0]);
-	// 	gfree(array[a][1]);
-	// 	gfree(array[a]);
+	// 	// gfree(array[a][0]);
+	// 	// gfree(array[a][1]);
+	// 	// gfree(array[a]);
 	// 	a += 1;
 	// }
-	// gfree(array);
+	// // gfree(array);
 }
 
 void	cleanup_shell(t_env *env, int status)

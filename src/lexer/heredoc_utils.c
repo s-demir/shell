@@ -29,6 +29,7 @@ void	exit_heredoc(int sig)
 {
 	(void)sig;
 	write(STDOUT_FILENO, "\n", 1); //STDOUT_FILENO = 1
+	clear_garbage();
 	exit(0);
 }
 
