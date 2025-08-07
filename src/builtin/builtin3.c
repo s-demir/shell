@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:02:22 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:10:57 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 21:11:12 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	__exit(char **_cmd_)
 		status = 255;
 	else if (_cmd_[1])
 		status = strtoint(_cmd_[1]);
-	//gfree_string_array(_cmd_);
 	clear_garbage();
 	exit(status);
 }

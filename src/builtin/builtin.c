@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:59:13 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:10:57 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 21:07:52 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	echo_cmd(char **_cmd, int *_out_fd)
 {
-	int				a;
-	int				op_n;
+	int	a;
+	int	op_n;
 
 	op_n = 0;
 	if (_cmd[0] && _cmd[1] && is_valid_echo_option(_cmd[1]))
@@ -42,8 +42,8 @@ int	echo_cmd(char **_cmd, int *_out_fd)
 
 int	env_or_pwd_cmd(char *_cmd, t_env *env, int con, int *_out_fd)
 {
-	int					a;
-	char				*abs_pwd;
+	int		a;
+	char	*abs_pwd;
 
 	a = -1;
 	if (str_cmp(_cmd, "env", NULL))
@@ -69,8 +69,8 @@ int	env_or_pwd_cmd(char *_cmd, t_env *env, int con, int *_out_fd)
 
 char	**export_cmd(char **_cmd, t_env *env, int *_out_fd, int **s)
 {
-	int				a;
-	int				b;
+	int	a;
+	int	b;
 
 	a = 1;
 	while (_cmd[a])
@@ -98,8 +98,8 @@ char	**export_cmd(char **_cmd, t_env *env, int *_out_fd, int **s)
 
 char	**unset_or_export_cmd(char **_cmd, t_env *env, int *_out_fd, int *s)
 {
-	int				a;
-	int				c;
+	int	a;
+	int	c;
 
 	a = 1;
 	*s = 0;
@@ -127,8 +127,8 @@ char	**unset_or_export_cmd(char **_cmd, t_env *env, int *_out_fd, int *s)
 
 int	cd_cmd(char **_cmd, t_env *env, int *_out_fd)
 {
-	int					a;
-	char				*new_path;
+	int		a;
+	char	*new_path;
 
 	if (_cmd[1] && _cmd[2])
 		ft_putendl_fd("  err: cd(): Not a cd thing", _out_fd[1]);

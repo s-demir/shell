@@ -6,37 +6,33 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:04:56 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:10:57 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 21:10:51 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void update_pwd_env(char *new_path, t_env *env, int unused)
+void	update_pwd_env(char *new_path, t_env *env, int unused)
 {
-    char **exp_args;
-    int tmp;
-    (void)unused;
-    exp_args = galloc(3 * sizeof(char *));
-    if (!exp_args)
-        return;
-    exp_args[0] = strcopy("export");
-    exp_args[1] = build_pwd_string(new_path);
-    if (!exp_args[1])
-	{
-        // gfree(exp_args[0]);
-        // gfree(exp_args);
-        return;
-	}
-    exp_args[2] = NULL;
-    unset_or_export_cmd(exp_args, env, NULL, &tmp);
-    //gfree_string_array(exp_args);
+	char	**exp_args;
+	int		tmp;
+
+	(void)unused;
+	exp_args = galloc(3 * sizeof(char *));
+	if (!exp_args)
+		return ;
+	exp_args[0] = strcopy("export");
+	exp_args[1] = build_pwd_string(new_path);
+	if (!exp_args[1])
+		return ;
+	exp_args[2] = NULL;
+	unset_or_export_cmd(exp_args, env, NULL, &tmp);
 }
 
 int	change_current_directory(char *path, t_env *env)
 {
-	int					status;
-	int					a;
+	int	status;
+	int	a;
 
 	if (!path || !string_length(path, '\0'))
 	{
@@ -53,14 +49,13 @@ int	change_current_directory(char *path, t_env *env)
 
 char	*get_current_working_directory(int size, int tries, int fd)
 {
-	char				*buffer;
+	char	*buffer;
 
 	buffer = galloc(size);
 	if (!buffer)
 		return (NULL);
 	if (!getcwd(buffer, size))
 	{
-		// gfree(buffer);
 		if (tries < 10)
 			return (get_current_working_directory(size + 50, tries + 1, fd));
 		else
@@ -74,31 +69,31 @@ char	*get_current_working_directory(int size, int tries, int fd)
 
 char	***sort_tha_array(char ***array, int size)
 {
-	int index;
-	int next_index;
-    char **temp;
+	int		index;
+	int		next_index;
+	char	**temp;
 
 	index = 0;
-    while (index < size - 1)
+	while (index < size - 1)
 	{
-        next_index = index + 1;
-        if (compare_string_order(array[index][0], array[next_index][0]))
+		next_index = index + 1;
+		if (compare_string_order(array[index][0], array[next_index][0]))
 		{
-            temp = array[index];
-            array[index] = array[next_index];
-            array[next_index] = temp;
-        }
-        index++;
-    }
-    if (!is_array_sorted(array, size))
-        return (sort_tha_array(array, size));
-    return (array);
+			temp = array[index];
+			array[index] = array[next_index];
+			array[next_index] = temp;
+		}
+		index++;
+	}
+	if (!is_array_sorted(array, size))
+		return (sort_tha_array(array, size));
+	return (array);
 }
 
 void	print_export_declaration_to_fd(t_env *env, int *_out_fd)
 {
-	char				***new_array;
-	int					a;
+	char	***new_array;
+	int		a;
 
 	a = 0;
 	while (env->parsed_env[a] != 0)
