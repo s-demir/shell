@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amsagman <amsagman@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:21:06 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:24:43 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 20:49:42 by amsagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	set_args(t_ast_node *command_node,
 	t_token **tokens, int arg_count)
 {
 	int		i;
-	t_token	*tmp;
+	//t_token	*tmp;
 
 	i = 0;
 	while (i < arg_count)
 	{
 		command_node->args[i] = ft_strdup((*tokens)->value);
-		tmp = *tokens;
+		//tmp = *tokens;
 		*tokens = (*tokens)->next;
 		// // gfree(tmp->value);
 		// // gfree(tmp);

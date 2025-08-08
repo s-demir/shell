@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amsagman <amsagman@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 20:33:50 by amsagman          #+#    #+#             */
-/*   Updated: 2025/08/06 18:29:52 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 23:47:33 by amsagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ static void process_heredoc_input(int std_out, char *limiter, t_env *env, int ex
 void manage_heredoc_fds(int *out_fd, int *piped, int status)
 {
 	close(out_fd[1]);
-	piped[1] = out_fd[0];
-	piped[9] = WEXITSTATUS(status) - 1;
-	if (piped[9] < 0)
-		piped[9] += 2;
-	piped[11] = status;
+	piped[PIPE_INPUT_FD] = out_fd[0];
+	piped[PIPE_RESERVED1] = WEXITSTATUS(status) - 1;
+	if (piped[PIPE_RESERVED1] < 0)
+		piped[PIPE_RESERVED1] += 2;
+	piped[PIPE_EXEC_STATE] = status;
+	close(out_fd[0]); //ben ekldim (hüma) ama terminal bunu eklediğimde loopta kalıyor
+	//eklemediğimde de fd kapanmıyor 6dan 7ye çıkıyor açık kalan fd sayısı. 
 }
 
 int run_heredoc(char *limiter, int *piped, t_env *env)

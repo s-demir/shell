@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:29:39 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:29:28 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/08 15:17:44 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	execute_builtin_with_piping(char **_cmd_, int *_fd, t_env *env, int *_piped)
 		close(_out_fd[1]);
 		_fd[0] = _out_fd[0];
 	}
+	//close(_out_fd[0]); //ben ekledim (hüma)
 	return (status);
 }
 

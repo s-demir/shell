@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:21:34 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:26:20 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/08 17:36:20 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ void	cleanup_shell(t_env *env, int status)
 	}
 	exit(status);
 }
-
-// void	close_pipe_fds(int fd1, int fd2)
-// {
-// 	close(fd1);
-// 	close(fd2);
-// }
 
 void safe_close(int fd)
 {

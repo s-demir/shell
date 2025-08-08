@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:34:02 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:22:45 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/08 15:31:54 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,22 +90,22 @@ int	check_if_command_is_builtin(char *_cmd)
 	return (status);
 }
 
-int	run_builtin_in_child(char **_cmd_, t_env *env, int *_out_fd, int *_piped)
+int	run_builtin_in_child(char **cmd, t_env *env, int *_out_fd, int *_piped)
 {
 	int			status;
 
 	status = 0;
 	(void)_piped;
-	if (str_cmp(_cmd_[0], "echo", NULL))
-		status = echo_cmd(_cmd_, _out_fd);
-	else if (str_cmp(_cmd_[0], "pwd", "env"))
-		status = env_or_pwd_cmd(_cmd_[0], env, 0, _out_fd);
-	else if (str_cmp(_cmd_[0], "export", "unset"))
-		_cmd_ = unset_or_export_cmd(_cmd_, env, _out_fd, &status);
-	else if (str_cmp(_cmd_[0], "cd", NULL))
-		status = cd_cmd(_cmd_, env, _out_fd);
-	else if (str_cmp(_cmd_[0], "exit", NULL))
-		__exit(_cmd_);
-	gfree_string_array(_cmd_);
+	if (str_cmp(cmd[0], "echo", NULL))
+		status = echo_cmd(cmd, _out_fd);
+	else if (str_cmp(cmd[0], "pwd", "env"))
+		status = env_or_pwd_cmd(cmd[0], env, 0, _out_fd);
+	else if (str_cmp(cmd[0], "export", "unset"))
+		cmd = unset_or_export_cmd(cmd, env, _out_fd, &status);
+	else if (str_cmp(cmd[0], "cd", NULL))
+		status = cd_cmd(cmd, env, _out_fd);
+	else if (str_cmp(cmd[0], "exit", NULL))
+		close_session(cmd);
+	gfree_string_array(cmd);
 	return (status);
 }

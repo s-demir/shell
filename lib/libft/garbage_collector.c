@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   garbage_collector.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/07 21:01:23 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/07 21:01:57 by sedemir          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "libft.h"
 #include "stdbool.h"
@@ -31,6 +20,7 @@ void	*addgarbage(void *address)
 
 	if (!address)
 		return (0);
+
 	collector = getgarbage();
 	tmp = malloc(sizeof(t_list));
 	if (!tmp)

@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 14:59:25 by amsagman          #+#    #+#             */
-/*   Updated: 2025/08/07 20:59:47 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:37:15 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int			strtoint(char *str);
 int			count_array_strings(char **arr);
 
 /* ---------------------------- env ------------------------------ */
+void		update_old_pwd(t_env *env, int idx);
 int			start_shell(t_env *env, char **orig_env);
 int			setup_env(t_env *env, char **orig_env, int count);
 
@@ -267,7 +268,7 @@ int			is_array_sorted(char ***array, int size);
 int			is_valid_echo_option(char *s);
 
 char		*build_pwd_string(char *new_path);
-void		exit_cmd(char **cmd);
+void		close_session(char **cmd);
 int			export_statment_check(char *cmd);
 int			is_export_with_args(char **cmd);
 

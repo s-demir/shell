@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_pipeline.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amsagman <amsagman@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:52:13 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/06 18:00:13 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/07 21:32:45 by amsagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	child_fds_managment(int *_piped, int *_fd, int *fd_)
 		dup2(_fd[0], 0);
 	if (_piped[PIPE_ACTIVE] > 1 && (!_piped[PIPE_REDIR_COMBO] || !_piped[PIPE_HAS_OUTPUT]))
 		dup2(fd_[1], 1);
-	// else
-	// 	safe_close(fd_[0]);
+	//else
+	 	//safe_close(fd_[0]);
 	safe_close(fd_[0]);
 	safe_close(fd_[1]);
 }

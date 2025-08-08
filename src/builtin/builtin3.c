@@ -6,7 +6,7 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:02:22 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/07 21:11:12 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/08 17:21:25 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ char	*build_pwd_string(char *new_path)
 	return (pwd_str);
 }
 
-void	__exit(char **_cmd_)
+void	close_session(char **cmd)
 {
 	int	status;
 
 	status = 0;
-	if (_cmd_[1] && _cmd_[2])
+	if (cmd[1] && cmd[2])
 		status = 1;
-	else if (_cmd_[1] && !is_numeric_string(_cmd_[1]))
+	else if (cmd[1] && !is_numeric_string(cmd[1]))
 		status = 255;
-	else if (_cmd_[1])
-		status = strtoint(_cmd_[1]);
+	else if (cmd[1])
+		status = strtoint(cmd[1]);
 	clear_garbage();
 	exit(status);
 }
@@ -83,4 +83,32 @@ int	export_statment_check(char *_cmd_)
 		}
 	}
 	return (a);
+}
+
+int	echo_cmd(char **_cmd, int *_out_fd)
+{
+	int				a;
+	int				op_n;
+
+	op_n = 0;
+	if (_cmd[0] && _cmd[1] && is_valid_echo_option(_cmd[1]))
+		op_n = 1;
+	a = op_n + 1;
+	while (op_n && _cmd[a] && is_valid_echo_option(_cmd[a]))
+		a++;
+	if ((_cmd[0] && _cmd[a]) || string_length(_cmd[a], '\0'))
+	{
+		while (1)
+		{
+			ft_putstr_fd(_cmd[a], _out_fd[1]);
+			a++;
+			if (_cmd[a])
+				write(_out_fd[1], " ", 1);
+			else
+				break ;
+		}
+	}
+	if (!op_n)
+		write(_out_fd[1], "\n", 1);
+	return (0);
 }

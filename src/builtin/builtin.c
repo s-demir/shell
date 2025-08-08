@@ -6,44 +6,16 @@
 /*   By: sedemir <sedemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 16:59:13 by sedemir           #+#    #+#             */
-/*   Updated: 2025/08/07 21:07:52 by sedemir          ###   ########.fr       */
+/*   Updated: 2025/08/08 17:21:21 by sedemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	echo_cmd(char **_cmd, int *_out_fd)
-{
-	int	a;
-	int	op_n;
-
-	op_n = 0;
-	if (_cmd[0] && _cmd[1] && is_valid_echo_option(_cmd[1]))
-		op_n = 1;
-	a = op_n + 1;
-	while (op_n && _cmd[a] && is_valid_echo_option(_cmd[a]))
-		a++;
-	if ((_cmd[0] && _cmd[a]) || string_length(_cmd[a], '\0'))
-	{
-		while (1)
-		{
-			ft_putstr_fd(_cmd[a], _out_fd[1]);
-			a++;
-			if (_cmd[a])
-				write(_out_fd[1], " ", 1);
-			else
-				break ;
-		}
-	}
-	if (!op_n)
-		write(_out_fd[1], "\n", 1);
-	return (0);
-}
-
 int	env_or_pwd_cmd(char *_cmd, t_env *env, int con, int *_out_fd)
 {
-	int		a;
-	char	*abs_pwd;
+	int					a;
+	char				*abs_pwd;
 
 	a = -1;
 	if (str_cmp(_cmd, "env", NULL))
@@ -62,15 +34,15 @@ int	env_or_pwd_cmd(char *_cmd, t_env *env, int con, int *_out_fd)
 	if (abs_pwd)
 	{
 		ft_putendl_fd(abs_pwd, _out_fd[1]);
-		return (gfree(abs_pwd), 0);
+		return (0);
 	}
 	return (256);
 }
 
 char	**export_cmd(char **_cmd, t_env *env, int *_out_fd, int **s)
 {
-	int	a;
-	int	b;
+	int				a;
+	int				b;
 
 	a = 1;
 	while (_cmd[a])
@@ -98,8 +70,8 @@ char	**export_cmd(char **_cmd, t_env *env, int *_out_fd, int **s)
 
 char	**unset_or_export_cmd(char **_cmd, t_env *env, int *_out_fd, int *s)
 {
-	int	a;
-	int	c;
+	int				a;
+	int				c;
 
 	a = 1;
 	*s = 0;
@@ -125,10 +97,22 @@ char	**unset_or_export_cmd(char **_cmd, t_env *env, int *_out_fd, int *s)
 	return (_cmd);
 }
 
+static int new_path(t_env *env)
+{
+	char	*new_path;
+
+	new_path = get_current_working_directory(100, 5, 2);
+	if (new_path)
+	{
+		update_pwd_env(new_path, env, -1);
+		free(new_path);
+		return (0);
+	}
+	return (256);
+}
 int	cd_cmd(char **_cmd, t_env *env, int *_out_fd)
 {
 	int		a;
-	char	*new_path;
 
 	if (_cmd[1] && _cmd[2])
 		ft_putendl_fd("  err: cd(): Not a cd thing", _out_fd[1]);
@@ -141,14 +125,11 @@ int	cd_cmd(char **_cmd, t_env *env, int *_out_fd)
 		{
 			a = locate_env_var_index(env, "PWD");
 			if (a >= 0)
-				remove_env_entry(env, a);
-			new_path = get_current_working_directory(100, 5, _out_fd[1]);
-			if (new_path)
 			{
-				update_pwd_env(new_path, env, a);
-				gfree(new_path);
+				update_old_pwd(env, a);
+				remove_env_entry(env, a);
 			}
-			return (0);
+			return (new_path(env));
 		}
 	}
 	return (256);
